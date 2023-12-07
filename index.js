@@ -5,7 +5,6 @@ import alunoRouter from './routes/students.js';
 import guardianRouter from './routes/guardian.js';
 import bondRouter from './routes/bond.js';
 import searchRouter from './routes/search.js';
-// import mailRouter from './routes/mail.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
