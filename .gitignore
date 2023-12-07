@@ -1,0 +1,45 @@
+# Módulos Node.js
+node_modules/
+
+# Arquivos temporários gerados durante a execução
+npm-debug.log
+yarn-error.log
+
+# Arquivos de configuração
+.env
+.env.local
+.env.*.local
+
+# Arquivos gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de log
+*.log
+logs/
+
+# Saída de cobertura
+coverage/
+
+# Arquivos de compilação
+lib/
+dist/
+*.tsbuildinfo
+
+# Dependendo do seu ambiente de desenvolvimento, você também pode querer ignorar
+# arquivos específicos do seu editor, IDE ou sistema operacional. Por exemplo:
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ
+.idea/
+
+# Node.js debug files
+*.pid
+*.seed
+*.pid.lock
+
+# Yarn
+yarn-error.log
+.pnp.*
