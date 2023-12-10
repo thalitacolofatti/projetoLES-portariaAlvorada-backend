@@ -20,11 +20,17 @@ export const addBond = (req, res) => {
 };
 
 export const deleteBond = (req, res) => {
-  const { motivo, alunoId, respId} = req.body;
+  const id = req.body.id
+
+  if(!id){
+    return res.status(422).json({msg: 'Precisamos do id'});
+  } 
+
+  console.log('id:', id);
 
   db.query(
-    'UPDATE autorizados SET deletedAt = NOW() AND motivo = ? WHERE `alunoId` = ? AND `respId` = ?',
-    [motivo, alunoId, respId],
+    'UPDATE autorizados SET deletedAt = NOW() WHERE id = ?',
+    [id],
     (error) => {
       if (error) {
         console.log(error);
