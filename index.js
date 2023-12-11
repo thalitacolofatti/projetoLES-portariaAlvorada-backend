@@ -27,12 +27,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
 app.use(cookieParser());
 
-app.use('/api/users/', userRouter);
-app.use('/api/auth/', authRouter);
-app.use('/api/alunos/', alunoRouter);
-app.use('/api/responsaveis/', guardianRouter);
-app.use('/api/vinculo/', bondRouter);
-app.use('/api/buscar/', searchRouter);
+app.use('/users/', userRouter);
+app.use('/auth/', authRouter);
+app.use('/alunos/', alunoRouter);
+app.use('/responsaveis/', guardianRouter);
+app.use('/vinculo/', bondRouter);
+app.use('/buscar/', searchRouter);
 
 app.listen(8002, () => {
   console.log('Servidor rodando na porta 8002!');
