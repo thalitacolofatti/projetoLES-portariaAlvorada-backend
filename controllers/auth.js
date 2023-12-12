@@ -50,6 +50,10 @@ export const register = (req, res) => {
 
 export const login = (req, res) => {
   const { email, password } = req.body;
+  res.header('Access-Control-Allow-Origin', 'https://projeto-les-portaria-alvorada-frontend.vercel.app');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Access-Control-Allow-Credentials');
   db.query(
     "SELECT * FROM user WHERE email = ?",
     [email], 
@@ -113,7 +117,7 @@ export const refresh = (req, res) => {
   const refresh = authHeader && authHeader.split('=')[1];
 
   const tokenStruct = refresh.split('.')[1];
-  const payload = atob(tokenStruct); //descriptografa e retorna o valor para poder refazer o token
+  const payload = atob(tokenStruct); 
 
   try {
     const refreshToken = jwt.sign(

@@ -17,9 +17,8 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: [
     'Content-Type',
-    'Authorization'
-    // ,
-    // 'Access-Control-Allow-Credentials'
+    'Authorization',
+    'Access-Control-Allow-Credentials'
   ]
 }
 app.use(cors(corsOptions));
@@ -27,14 +26,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'https://projeto-les-portaria-alvorada-frontend.vercel.app');
-//   res.header('Access-Control-Allow-Credentials', true);
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Access-Control-Allow-Credentials');
-//   next();
-// });
 
 app.use('/users/', userRouter);
 app.use('/auth/', authRouter);
