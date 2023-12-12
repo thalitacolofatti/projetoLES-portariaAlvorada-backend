@@ -12,7 +12,7 @@ import cookieParser from 'cookie-parser';
 const app = express();
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://projetoles-portaria-alvorada-frontend.vercel.app'],
+  origin: ['https://projetoles-portaria-alvorada-frontend.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: [
