@@ -11,6 +11,7 @@
       "src": "/(.*)",
       "dest": "/"
     }, 
+    { "src": "/auth/login", "dest": "/auth/login", "methods": ["POST"] },
     {
       "src": "/auth/login",
       "methods": ["OPTIONS"],
