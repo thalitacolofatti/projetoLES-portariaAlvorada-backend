@@ -12,7 +12,7 @@ import cookieParser from 'cookie-parser';
 const app = express();
 
 const corsOptions = {
-  origin: 'https://projeto-les-portaria-alvorada-frontend.vercel.app',
+  origin: ['http://localhost:3000', 'https://projetoles-portaria-alvorada-frontend.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: [
@@ -20,12 +20,13 @@ const corsOptions = {
     'Authorization',
     'Access-Control-Allow-Credentials'
   ]
-}
+};
 app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.options('/auth/login', cors(corsOptions));
 
 app.use('/users/', userRouter);
 app.use('/auth/', authRouter);
