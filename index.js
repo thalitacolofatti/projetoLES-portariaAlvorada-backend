@@ -11,30 +11,41 @@ import cookieParser from 'cookie-parser';
 
 const app = express();
 
+var whitelist = ['http://localhost:5000', 'https://projeto-les-portaria-alvorada-frontend-m448ses7g.vercel.app','https://projeto-les-portaria-alvorada-frontend.vercel.app']
+
 const corsOptions = {
-  origin: ['https://projeto-les-portaria-alvorada-frontend-m448ses7g.vercel.app','https://projeto-les-portaria-alvorada-frontend.vercel.app'],
+  origin: function originWhitelist (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error('não permitido pelo CORS'))
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: [
     'Content-Type',
     'Authorization',
     'Access-Control-Allow-Credentials'
-  ]
+  ], 
+  preflightContinue: true, 
+  optionsSuccessStatus: 200
 };
-app.use(cors(corsOptions));
+
+
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors(corsOptions));
 app.use(cookieParser());
-app.options('/auth/login', cors(corsOptions));
 
-app.use('/users/', userRouter);
-app.use('/auth/', authRouter);
-app.use('/alunos/', alunoRouter);
-app.use('/responsaveis/', guardianRouter);
-app.use('/vinculo/', bondRouter);
-app.use('/buscar/', searchRouter);
+app.use('/api/users/', userRouter);
+app.use('/api/auth/', authRouter);
+app.use('/api/alunos/', alunoRouter);
+app.use('/api/responsaveis/', guardianRouter);
+app.use('/api/vinculo/', bondRouter);
+app.use('/api/buscar/', searchRouter);
 
-app.listen(8002, () => {
-  console.log('Servidor rodando na porta 8002!');
+app.listen(8001, () => {
+  console.log('Servidor rodando na porta 8001!');
 });

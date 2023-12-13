@@ -2,52 +2,6 @@ import db from '../connect.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-export const register = (req, res) => {
-  const { nome, email, password, confirmPassword} = req.body
-  if (!nome){
-    return res.status(422).json({msg:'Nome obrigatório'})
-  }
-  if (!email){
-    return res.status(422).json({msg:'Email obrigatório!'})
-  }
-  if (!password){
-    return res.status(422).json({msg:'Senha obrigatória!'})
-  }
-  if (password !== confirmPassword){
-    return res.status(422).json({msg:'As senhas estão diferentes'})
-  }
-
-  db.query(
-    "SELECT email FROM user WHERE email = ?",
-    [email], 
-    async(error, data)=>{
-      if(error){
-        console.log(error)
-        return res.status(500).json({
-          msg:'Aconteceu algum erro no servidor, tente novamente mais tarde.'
-        });
-      }
-      if(data.length > 0){
-        return res.status(500).json({msg: 'Este email já está cadastrado!'});
-      }
-      else{
-        const passwordHash = await bcrypt.hash(password, 8)
-        db.query(
-          'INSERT INTO user SET ?',
-          {nome, email, password:passwordHash},
-          (error)=>{
-            if(error){
-              console.log(error)
-              return res.status(500).json({msg: 'Aconteceu algum erro no servidor, tente novamente mais tarde.'})
-            }else{
-              return res.status(200).json({msg: 'Cadastro efetuado com sucesso!'})
-            }
-          }
-        )
-      }
-  })
-};
-
 export const login = (req, res) => {
   const { email, password } = req.body;
   db.query(
@@ -102,7 +56,6 @@ export const login = (req, res) => {
             msg: 'Aconteceu um problema no servidor, tente novamente mais tarde.',
           });
         }
-        
       }
     }
   )
