@@ -32,8 +32,6 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-
-
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
@@ -46,6 +44,8 @@ app.use('/api/responsaveis/', guardianRouter);
 app.use('/api/vinculo/', bondRouter);
 app.use('/api/buscar/', searchRouter);
 
-app.listen(8001, () => {
-  console.log('Servidor rodando na porta 8001!');
+const PORT = process.env.PORT || 8001;
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}!`);
 });
