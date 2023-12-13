@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser';
 
 const app = express();
 
-var whitelist = ['http://localhost:5000', 'https://projeto-les-portaria-alvorada.vercel.app', 'https://projeto-les-portaria-alvorada-frontend-thalitacolofatti.vercel.app', 'https://projeto-les-portaria-alvorada-front-git-bb5226-thalitacolofatti.vercel.app', 'https://projeto-les-portaria-alvorada-frontend-adxph51q2.vercel.app']
+var whitelist = ['http://localhost:5000', 'https://projeto-les-portaria-alvorada.vercel.app']
 
 const corsOptions = {
   origin: function originWhitelist (origin, callback) {
